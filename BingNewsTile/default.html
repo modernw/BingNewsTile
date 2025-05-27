@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>BingNewsTile</title>
+
+    <!-- WinJS 引用 -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <!-- BingNewsTile 引用 -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script>
+        function importScripts(uri) {}
+    </script>
+    <script src="/js/default.js"></script>
+    <script src="/js/tiletemplate.js"></script>
+    <script src="/js/tiletrans.js"></script>
+    <script src="/js/tileup.js"></script>
+    <script src="/js/uri.js"></script>
+</head>
+<body>
+    <header>
+        <h1 data-win-res="{textContent: '/resources/AppPageTitle'}"></h1>
+    </header>
+    <div class="content" style="overflow-y: auto;">
+        <div style="width: 100%">
+            <p data-win-res="{textContent: '/resources/Description'}"></p>
+            <button onclick="updateTileAsync()" id="btn-update" data-win-res="{textContent: '/Resources/Button_TryToUpdate'}"></button>
+            <button onclick="javascript: Windows.System.Launcher.launchUriAsync(new Windows.Foundation.Uri('bingnews:'));" id="btn-update" data-win-res="{textContent: '/Resources/Button_LaunchApp'}"></button>
+            <p data-win-res="{textContent: '/resources/Page_URL'}"><code class="cpenabled" id="tileurl"></code></p>
+            <p data-win-res="{textContent: '/resources/Page_Status'}"></p>
+            <p id="status"></p>
+            <content>
+                <p data-win-res="{textContent: '/resources/Page_Type1'}"></p>
+                <p data-win-res="{textContent: '/resources/Page_GottenXML'}"></p>
+                <pre class="code-pre"><code id="tile-xml-get" class="hljs language-xml"></code></pre>
+                <p data-win-res="{textContent: '/resources/Page_TransedXML'}"></p>
+                <pre class="code-pre"><code id="tile-xml-trans" class="hljs language-xml"></code></pre>
+                <div style="width: 1px; height: auto; min-height: 10px; max-height: 30px;"></div>
+            </content>
+            <content>
+                <p data-win-res="{textContent: '/resources/Page_Type2'}"></p>
+                <p data-win-res="{textContent: '/resources/Page_GottenXML'}"></p>
+                <pre class="code-pre"><code id="tile-xml-get-multiple" class="hljs language-xml"></code></pre>
+                <p data-win-res="{textContent: '/resources/Page_TransedXML'}"></p>
+                <pre class="code-pre"><code id="tile-xml-trans-multiple" class="hljs language-xml"></code></pre>
+                <div style="width: 1px; height: auto; min-height: 10px; max-height: 30px;"></div>
+            </content>
+        </div>
+    </div>
+    <script style="display: none;">
+        /** 
+            @returns {HTMLElement} 
+        */
+        function getElement(element) {
+            if (typeof element === "string") {
+                return document.getElementById(element);
+            } else if (element instanceof HTMLElement) {
+                return element;
+            }
+            return null;
+        }
+        function setText(element, textstring) {
+            var e = getElement(element);
+            if (e) {
+                e.textContent = textstring;
+                if (e.classList.contains("hljs")) {
+                    //hljs.highlightElement(e);
+                }
+                return true;
+            }
+            return false;
+        }
+        function setDisplayUrl(url) {
+            return setText(getElement("tileurl"), url);
+        }
+        function setDisplayStatus(text) {
+            return setText(getElement("status"), text);
+        }
+        function getXmlString(xml) {
+            var t = "";
+            if (xml instanceof Document) {
+                var serializer = new XMLSerializer();
+                t = serializer.serializeToString(xml);
+            } else if (typeof xml === "string") {
+                t = xml;
+            }
+            return t;
+        }
+        function setDisplayGetXml(xml) {
+            return setText(getElement("tile-xml-get"), getXmlString(xml));
+        }
+        function setDisplayTransXml(xml) {
+            return setText(getElement("tile-xml-trans"), getXmlString(xml));
+        }
+
+        function setDisplayGetXmlMultiple(xml) {
+            return setText(getElement("tile-xml-get-multiple"), getXmlString(xml));
+        }
+        function setDisplayTransXmlMultiple(xml) {
+            return setText(getElement("tile-xml-trans-multiple"), getXmlString(xml));
+        }
+
+        function setUpdateButtonDisabled(disabled) {
+            var element = getElement("btn-update");
+            if (element) {
+                element.disabled = disabled;
+            }
+        }
+    </script>
+</body>
+</html>

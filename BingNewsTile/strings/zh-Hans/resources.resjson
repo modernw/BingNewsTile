@@ -1,0 +1,17 @@
+﻿// 有关本地化 Windows 应用程序的详细信息，请参阅: http://go.microsoft.com/fwlink/?LinkId=212836
+
+{
+	"AppTitle": "资讯",
+	"News": "资讯",
+	"AppList": "Bing News Tile",
+	"AppPageTitle": "Bing News Live Tile",
+	"Description": "复现必应资讯应用的动态磁贴（虽然只能复现一点点）。原理是获取 Windows 10 版的必应资讯应用的用于动态磁贴轮循更新 URI，获取其中的内容后转换成适合 Windows 8.1 的磁贴。（其实能做处理 Windows 8 的，但是太麻烦和难处理就不做了，希望有心之人能拾起了吧。）",
+	"Button_TryToUpdate": "尝试更新",
+	"Page_URL": "链接：",
+	"Page_Status": "状态：",
+	"Page_Type1": "类型 1 (Single)：",
+	"Page_Type2": "类型 2 (Multiple)：",
+	"Page_GottenXML": "获取到的 XML: ",
+	"Page_TransedXML": "转换后的的 XML: ",
+	"Button_LaunchApp": "启动原本的应用"
+}

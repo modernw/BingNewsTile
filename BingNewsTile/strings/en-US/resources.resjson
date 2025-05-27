@@ -1,0 +1,17 @@
+﻿// 有关本地化 Windows 应用程序的详细信息，请参阅: http://go.microsoft.com/fwlink/?LinkId=212836
+
+{
+	"AppTitle": "News",
+	"News": "News",
+	"AppList": "Bing News Tile",
+	"AppPageTitle": "Bing News Live Tile",
+	"Description": "Reproducing the Live Tiles of the Bing News App (Though Only Partially). The principle involves retrieving the cycling update URIs used by the Windows 10 version of the Bing News app for its live tiles, extracting their content, and adapting it for Windows 8.1-compatible tiles. (Technically, this could also work for Windows 8, but the process is too cumbersome and challenging, so it’s left unfinished—hoping someone else can take it up.)",
+	"Button_TryToUpdate": "Try to update",
+	"Page_URL": "URL: ",
+	"Page_Status": "Status: ",
+	"Page_Type1": "Type 1 (Single): ",
+	"Page_Type2": "Type 2 (Multiple): ",
+	"Page_GottenXML": "Original XML: ",
+	"Page_TransedXML": "Converted XML: ",
+	"Button_LaunchApp": "Launch App"
+}
