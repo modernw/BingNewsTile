@@ -28,7 +28,9 @@ var getMarket = function () {
     } catch (e) {
     }
     try {
-        return navigator.language || navigator.userLanguage || "";
+        var lang = navigator.language || navigator.userLanguage || "";
+        Windows.Storage.ApplicationData.current.localSettings.values["language"] = lang;
+        return lang;
     } catch (e) {
     }
     return "";

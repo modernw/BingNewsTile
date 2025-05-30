@@ -17,7 +17,7 @@ function isBackgroundTask() { return false; }
                 // TODO: 此应用程序刚刚启动。在此处初始化
                 //您的应用程序。
                 registerTask();
-                uptime = setInterval(updateTileAsync, 60 * 60 * 1000);
+                uptime = setInterval(updateTileForTimer, 60 * 60 * 1000);
             } else {
                 if (console.warn) console.warn("此应用程序已挂起，然后终止。");
                 if (uptime) {
@@ -26,7 +26,7 @@ function isBackgroundTask() { return false; }
                     clearInterval(itr);
                 }
                 if (!uptime) {
-                    uptime = setInterval(updateTileAsync, 60 * 60 * 1000);
+                    uptime = setInterval(updateTileForTimer, 60 * 60 * 1000);
                 }
                 // TODO: 此应用程序已挂起，然后终止。
                 // 若要创造顺畅的用户体验，请在此处还原应用程序状态，使应用似乎永不停止运行。
@@ -36,7 +36,7 @@ function isBackgroundTask() { return false; }
     };
 
     WinJS.Application.onloaded = function () {
-        updateTileAsync();
+        updateTileForTimer();
         WinJS.Resources.processAll();
     }
 
@@ -84,3 +84,19 @@ function registerTask() {
         });
     }
 };
+
+function updateTileForTimer() {
+    return WinJS.Promise.timeout(15000, updateTileAsync()).then(
+        function () {
+
+        }, function (err) {
+            if (typeof setDisplayStatus === "function") {
+                setDisplayStatus("更新磁贴失败：" + err);
+            }
+            if (typeof setUpdateButtonDisabled === "function") {
+                setUpdateButtonDisabled(false);
+            }
+            return;
+            return WinJS.Promise.wrapError(err);
+        });
+}

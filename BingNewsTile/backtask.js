@@ -10,6 +10,7 @@
     );
 
     setGetMarketFunction(function () {
+        return Windows.Storage.ApplicationData.current.localSettings.values["language"];
         var lang = Windows.Globalization.ApplicationLanguages.languages[0];
         if (lang) {
             var parts = lang.split("-");

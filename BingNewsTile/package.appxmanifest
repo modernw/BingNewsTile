@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="Microsoft.BingNews.LiveTile" Version="1.0.0.19" Publisher="CN=Bruce" />
+  <Identity Name="Microsoft.BingNews.LiveTile" Version="1.0.0.28" Publisher="CN=Bruce" />
   <Properties>
     <DisplayName>ms-resource:AppList</DisplayName>
     <PublisherDisplayName>Bruce</PublisherDisplayName>
-    <Logo>images\storelogo.png</Logo>
+    <Logo>images\images\store.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.3.0</OSMinVersion>
@@ -15,16 +15,16 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <m2:VisualElements DisplayName="ms-resource:AppList" Description="ms-resource:Description" ForegroundText="light" BackgroundColor="#ac193d" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png" ToastCapable="false">
-        <m2:LockScreen Notification="badgeAndTileText" BadgeLogo="images\BadgeLogo.png" />
-        <m2:DefaultTile ShortName="ms-resource:News" Square70x70Logo="images\Square70x70Logo.png" Square310x310Logo="images\Square310x310Logo.png" Wide310x150Logo="images\Wide310x150Logo.png">
+      <m2:VisualElements DisplayName="ms-resource:AppList" Description="ms-resource:Description" ForegroundText="light" BackgroundColor="#ac193d" Square150x150Logo="images\images\logo.png" Square30x30Logo="images\images\small.png" ToastCapable="false">
+        <m2:LockScreen Notification="badgeAndTileText" BadgeLogo="images\images\badge.png" />
+        <m2:DefaultTile ShortName="ms-resource:News" Square70x70Logo="images\images\tiny.png" Square310x310Logo="images\images\large.png" Wide310x150Logo="images\images\wide.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
             <m2:ShowOn Tile="wide310x150Logo" />
             <m2:ShowOn Tile="square310x310Logo" />
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
-        <m2:SplashScreen Image="images\splashscreen.png" BackgroundColor="#ac193d" />
+        <m2:SplashScreen Image="images\images\splash.png" BackgroundColor="#ac193d" />
         <m2:InitialRotationPreference>
           <m2:Rotation Preference="portrait" />
           <m2:Rotation Preference="landscape" />

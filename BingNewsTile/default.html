@@ -21,16 +21,19 @@
     <script src="/js/tileup.js"></script>
     <script src="/js/uri.js"></script>
 </head>
-<body>
+<body style="background-color: #681c2f;">
     <header>
         <h1 data-win-res="{textContent: '/resources/AppPageTitle'}"></h1>
     </header>
     <div class="content" style="overflow-y: auto;">
         <div style="width: 100%">
             <p data-win-res="{textContent: '/resources/Description'}"></p>
-            <button onclick="updateTileAsync()" id="btn-update" data-win-res="{textContent: '/Resources/Button_TryToUpdate'}"></button>
+            <button onclick="updateTileForTimer()" id="btn-update" data-win-res="{textContent: '/Resources/Button_TryToUpdate'}"></button>
             <button onclick="javascript: Windows.System.Launcher.launchUriAsync(new Windows.Foundation.Uri('bingnews:'));" id="btn-update" data-win-res="{textContent: '/Resources/Button_LaunchApp'}"></button>
-            <p data-win-res="{textContent: '/resources/Page_URL'}"><code class="cpenabled" id="tileurl"></code></p>
+            <div style="display: none;">
+                <p data-win-res="{textContent: '/resources/Page_URL'}"></p>
+                <code class="cpenabled" id="tileurl"></code>
+            </div>
             <p data-win-res="{textContent: '/resources/Page_Status'}"></p>
             <p id="status"></p>
             <content>
