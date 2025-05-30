@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="Microsoft.BingNews.LiveTile" Version="1.0.0.28" Publisher="CN=Bruce" />
+  <Identity Name="Microsoft.BingNews.LiveTile" Version="1.0.0.29" Publisher="CN=Bruce" />
   <Properties>
     <DisplayName>ms-resource:AppList</DisplayName>
     <PublisherDisplayName>Bruce</PublisherDisplayName>

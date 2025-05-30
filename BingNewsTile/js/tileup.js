@@ -393,10 +393,6 @@ function updateTileAsync() {
             setDisplayStatus("开始更新磁贴...");
         }
 
-        var updater = Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication();
-        updater.enableNotificationQueue(true);
-        updater.clear();
-
         var uriMain = getMarketUri();
         var uriMultiple = getMarketUri_Multiple();
 
@@ -405,6 +401,10 @@ function updateTileAsync() {
         }
 
         getTileXmlFromUriAsync(uriMultiple).then(function (xmlMultiple) {
+            var updater = Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication();
+            updater.enableNotificationQueue(true);
+            updater.clear();
+
             if (typeof setDisplayGetXmlMultiple === "function") {
                 setDisplayGetXmlMultiple(formatXml(xmlDomToXmlString(xmlMultiple)));
             }
