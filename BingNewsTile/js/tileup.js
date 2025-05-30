@@ -403,6 +403,9 @@ function updateTileAsync() {
         getTileXmlFromUriAsync(uriMultiple).then(function (xmlMultiple) {
             var updater = Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication();
             updater.enableNotificationQueue(true);
+            updater.enableNotificationQueueForSquare150x150(true);
+            updater.enableNotificationQueueForSquare310x310(true);
+            updater.enableNotificationQueueForWide310x150(true);
             updater.clear();
 
             if (typeof setDisplayGetXmlMultiple === "function") {
