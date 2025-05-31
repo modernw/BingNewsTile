@@ -59,31 +59,47 @@ function isBackgroundTask() { return false; }
 })();
 
 function registerTask() {
-    var taskRegistered = false;
     var background = Windows.ApplicationModel.Background;
-    var iter = background.BackgroundTaskRegistration.allTasks.first();
-    while (iter.hasCurrent) {
-        if (iter.current.value.name === "TileUpdateTask") {
-            taskRegistered = true;
-            break;
-        }
-        iter.moveNext();
-    }
-    if (!taskRegistered) {
-        var requestStatus = background.BackgroundExecutionManager.requestAccessAsync();
-        requestStatus.done(function (status) {
-            if (status === background.BackgroundAccessStatus.allowedWithAlwaysOnRealTimeConnectivity ||
-                status === background.BackgroundAccessStatus.allowedMayUseActiveRealTimeConnectivity) {
-                var builder = new Windows.ApplicationModel.Background.BackgroundTaskBuilder();
-                builder.name = "TileUpdateTask";
-                builder.taskEntryPoint = "backtask.js";
-                builder.setTrigger(new Windows.ApplicationModel.Background.TimeTrigger(60, false));
-                builder.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
-                builder.register();
+
+    // 检查任务是否已注册
+    function isTaskRegistered(name) {
+        var iter = background.BackgroundTaskRegistration.allTasks.first();
+        while (iter.hasCurrent) {
+            if (iter.current.value.name === name) {
+                return true;
             }
-        });
+            iter.moveNext();
+        }
+        return false;
     }
-};
+
+    var requestStatus = background.BackgroundExecutionManager.requestAccessAsync();
+    requestStatus.done(function (status) {
+        if (status === background.BackgroundAccessStatus.allowedWithAlwaysOnRealTimeConnectivity ||
+            status === background.BackgroundAccessStatus.allowedMayUseActiveRealTimeConnectivity) {
+
+            // 注册定时触发任务（每60分钟）
+            if (!isTaskRegistered("TileUpdateTask_Timer")) {
+                var builderTimer = new background.BackgroundTaskBuilder();
+                builderTimer.name = "TileUpdateTask_Timer";
+                builderTimer.taskEntryPoint = "backtask.js";
+                builderTimer.setTrigger(new background.TimeTrigger(60, false));
+                builderTimer.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
+                builderTimer.register();
+            }
+
+            // 注册系统事件触发任务（用户登录后）
+            if (!isTaskRegistered("TileUpdateTask_OnBoot")) {
+                var builderBoot = new background.BackgroundTaskBuilder();
+                builderBoot.name = "TileUpdateTask_OnBoot";
+                builderBoot.taskEntryPoint = "backtask.js";
+                builderBoot.setTrigger(new background.SystemTrigger(background.SystemTriggerType.userPresent, false));
+                builderBoot.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
+                builderBoot.register();
+            }
+        }
+    });
+}
 
 function updateTileForTimer() {
     return WinJS.Promise.timeout(15000, updateTileAsync()).then(
