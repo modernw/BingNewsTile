@@ -97,6 +97,15 @@ function registerTask() {
                 builderBoot.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
                 builderBoot.register();
             }
+
+            if (!isTaskRegistered("TileUpdateTask_Network")) {
+                var builderNet = new background.BackgroundTaskBuilder();
+                builderNet.name = "TileUpdateTask_Network";
+                builderNet.taskEntryPoint = "backtask.js";
+                builderNet.setTrigger(new background.SystemTrigger(background.SystemTriggerType.networkStateChange, false));
+                builderNet.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
+                builderNet.register();
+            }
         }
     });
 }
