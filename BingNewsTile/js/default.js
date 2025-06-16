@@ -83,7 +83,7 @@ function registerTask() {
                 var builderTimer = new background.BackgroundTaskBuilder();
                 builderTimer.name = "TileUpdateTask_Timer";
                 builderTimer.taskEntryPoint = "backtask.js";
-                builderTimer.setTrigger(new background.TimeTrigger(60, false));
+                builderTimer.setTrigger(new background.TimeTrigger(30, false));
                 builderTimer.addCondition(new background.SystemCondition(background.SystemConditionType.internetAvailable));
                 builderTimer.register();
             }

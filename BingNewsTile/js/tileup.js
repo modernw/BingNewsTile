@@ -406,6 +406,7 @@ function updateTileAsync() {
             updater.enableNotificationQueueForSquare150x150(true);
             updater.enableNotificationQueueForSquare310x310(true);
             updater.enableNotificationQueueForWide310x150(true);
+            
             updater.clear();
 
             if (typeof setDisplayGetXmlMultiple === "function") {
@@ -460,7 +461,7 @@ function updateTileAsync() {
                             setDisplayStatus("正在添加磁贴队列 (Single)...");
                         }
 
-                        for (var i = 0; i < queue.length; i++) {
+                        for (var i = 0; i < queue.length && i < 4; i++) {
                             var tiles = new Windows.UI.Notifications.TileNotification(queue[i]);
                             updater.update(tiles);
                         }

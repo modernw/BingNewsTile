@@ -99,15 +99,15 @@ function win10TileToWin8Tile(tileXmlString) {
         var tile = new TileTemplate();
         image = binding.getElementsByTagName("image")[0];
         if (image === null || image == undefined) {
-            src = baseUri + getBlankImageUri(310, 310);
+            src =  getBlankImageUri(310, 310);
         } else {
-            src = image.getAttribute("src");
+            src = baseUri + image.getAttribute("src");
             ialt = image.getAttribute("alt");
         }
-        if (src == null || src.length == 0 || src == undefined) {
+        if (src === null || src.length == 0 || src == undefined) {
             src = "";
         }
-        if (ialt == null || ialt.length == 0 || ialt == undefined) {
+        if (ialt === null || ialt.length == 0 || ialt == undefined) {
             ialt = "";
         }
         tnode = binding.getElementsByTagName("text")[0];
@@ -527,10 +527,10 @@ function win10TileToWin8Tile(tileXmlString) {
         var image = binding.getElementsByTagName("image").item(0);
         var src, ialt;
         if (!image) {
-            src = baseUri + getBlankImageUri(310, 310);
+            src = getBlankImageUri(310, 310);
             ialt = "";
         } else {
-            src = image.getAttribute("src") || "";
+            src = baseUri + image.getAttribute("src") || "";
             ialt = image.getAttribute("alt") || "";
         }
         if (!src) src = "";
